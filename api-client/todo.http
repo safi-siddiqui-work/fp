@@ -1,0 +1,21 @@
+@baseUrl={{$dotenv baseUrl}}
+
+###
+GET {{baseUrl}}/todos
+content-type: application/json
+
+###
+POST {{baseUrl}}/todos
+content-type: application/json
+
+{
+    "name": "FIrst TODO"
+}
+
+###
+PATCH {{baseUrl}}/todos/1
+content-type: application/json
+
+{
+    "name": "FIrst TODO UPDATED"
+}
