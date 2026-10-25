@@ -7,7 +7,7 @@ async def getTodosService():
 
 async def createTodosService(createTodoSchema: CreateTodoSchema):
     print(createTodoSchema)
-    return {"msg": "Create Todo"}
+    return {"todo": createTodoSchema}
 
 
 async def updateTodosService(updateTodoSchema: UpdateTodoSchema):
