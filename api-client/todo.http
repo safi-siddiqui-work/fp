@@ -19,3 +19,11 @@ content-type: application/json
 {
     "name": "FIrst TODO UPDATED"
 }
+
+###
+GET {{baseUrl}}/todos/secure/resnet
+content-type: application/json
+
+###
+GET {{baseUrl}}/todo_files/fileA
+content-type: application/json
