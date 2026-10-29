@@ -21,5 +21,10 @@ async def createTodosService(createTodoSchema: CreateTodoSchema):
 
 
 async def updateTodosService(id: int, updateTodoSchema: UpdateTodoSchema):
-    print(id, updateTodoSchema)
+
+    updateDict = updateTodoSchema.model_dump()
+    if updateTodoSchema.name is not None:
+        updateDict.update({"name_extra": f"{updateTodoSchema.name}-extra"})
+
+    print(id, updateTodoSchema, updateDict)
     return {"msg": "Update TODO"}
