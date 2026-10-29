@@ -1,12 +1,16 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Path, Query
+from fastapi import APIRouter, Body, Path, Query
 from pydantic import AfterValidator
+from sqlmodel import Session, select
 
+from ..core.db import engine
+from .todo_models import TodoModel
 from .todo_schemas import (
     CreateTodoSchema,
     QueryParamsModel,
     SecureTodosModel,
+    TodoBodyModel,
     UpdateTodoSchema,
 )
 from .todo_services import (
@@ -98,3 +102,24 @@ async def getTodosPathRoute(
 async def getTPQRRoute(q: Annotated[QueryParamsModel, Query()]):
     res = {"q": q}
     return res
+
+
+@router.post("/todo_sqlmodel")
+async def createTodoM(todo: TodoModel):
+    with Session(engine) as session:
+        session.add(todo)
+        session.commit()
+        session.refresh(todo)
+        return todo
+
+
+@router.get("/todo_sqlmodel")
+async def getTodoM():
+    with Session(engine) as session:
+        todos = session.exec(select(TodoModel)).all()
+        return todos
+
+
+@router.post("/todo_body")
+async def todoBody(todo: TodoBodyModel, p2: Annotated[int, Body()]):
+    return {"todo": todo, "p2": p2}

@@ -51,3 +51,26 @@ content-type: application/json
 ###
 GET {{baseUrl}}/todo_pydantic_query_params?p1=55&p2=joy&p3=false
 content-type: application/json
+
+###
+POST {{baseUrl}}/todo_sqlmodel
+content-type: application/json
+
+{
+    "name": "JS"
+}
+
+###
+GET {{baseUrl}}/todo_sqlmodel
+content-type: application/json
+
+###
+POST {{baseUrl}}/todo_body
+content-type: application/json
+
+{
+    "todo":{
+        "name": "Python"
+    },
+    "p2": 55
+}

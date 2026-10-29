@@ -22,3 +22,7 @@ class QueryParamsModel(BaseModel):
     p1: int = Field(0, gt=0, lt=101)
     p2: Literal["joy", "play"] = Field("joy")
     p3: bool = Field(True)
+
+
+class TodoBodyModel(BaseModel):
+    name: str
